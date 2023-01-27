@@ -1,0 +1,21 @@
+#!/bin/bash
+
+Instalando a biblioteca para ler arquivos xlsx
+sudo apt-get install -y libxlsxwriter-dev
+
+Variáveis
+FILE="data.xlsx" # Nome do arquivo Excel
+SHEET="Sheet1" # Nome da planilha a ser lida
+
+Lendo o arquivo Excel usando a biblioteca xlsx2csv
+xlsx2csv -d ',' -s 1 $FILE > data.csv
+
+Acessando os dados da planilha
+IFS=','
+while read -r col1 col2 col3 col4
+do
+echo "Coluna 1: $col1, Coluna 2: $col2, Coluna 3: $col3, Coluna 4: $col4"
+done < data.csv
+
+#Removendo arquivos
+rm data.csv
